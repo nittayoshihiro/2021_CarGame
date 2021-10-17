@@ -2,8 +2,9 @@
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] InputStatus m_inputStatus;
-    [SerializeField] float m_acceleration;
+    [SerializeField] InputStatus m_inputStatus = InputStatus.PC;
+    [SerializeField] float m_power = 30;
+    [SerializeField] float m_jumppower = 2;
     Transform m_transform;
     Rigidbody m_rigidbody;
 
@@ -21,27 +22,61 @@ public class PlayerController : MonoBehaviour
         switch (m_inputStatus)
         {
             case InputStatus.PC:
-                if (Input.GetKey("w"))
+                if (Input.GetKey(KeyCode.W))
                 {
-                    m_rigidbody.velocity += m_transform.TransformDirection(Vector3.forward * m_acceleration) * Time.fixedDeltaTime;
+                    GasPedal();
                 }
-                if (Input.GetKey("a"))
+                if (Input.GetKey(KeyCode.A))
                 {
-                    m_rigidbody.velocity += m_transform.TransformDirection(Vector3.left * m_acceleration) * Time.fixedDeltaTime;
+                    RightRotaion();
                 }
-                if (Input.GetKey("s"))
+                if (Input.GetKey(KeyCode.S))
                 {
-                    m_rigidbody.velocity += m_transform.TransformDirection(Vector3.back * m_acceleration) * Time.fixedDeltaTime;
+                    BackPedal();
                 }
-                if (Input.GetKey("d"))
+                if (Input.GetKey(KeyCode.D))
                 {
-                    m_rigidbody.velocity += m_transform.TransformDirection(Vector3.right * m_acceleration) * Time.fixedDeltaTime;
+                    LeftRotaion();
+                }
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Jump();
                 }
                 break;
             case InputStatus.SmartPhone:
 
                 break;
         }
+    }
+
+    /// <summary>アクセル（前進）</summary>
+    void GasPedal()
+    {
+        m_rigidbody.velocity += m_transform.TransformDirection(Vector3.forward * m_power) * Time.fixedDeltaTime;
+    }
+
+    /// <summary>右回転</summary>
+    void RightRotaion()
+    {
+        m_transform.Rotate(Vector3.down);
+    }
+
+    /// <summary>左回転</summary>
+    void LeftRotaion()
+    {
+        m_transform.Rotate(Vector3.up);
+    }
+
+    /// <summary>バック（後進）</summary>
+    void BackPedal()
+    {
+        m_rigidbody.velocity += m_transform.TransformDirection(Vector3.back * m_power) * Time.fixedDeltaTime;
+    }
+
+    /// <summary>ジャンプ</summary>
+    void Jump()
+    {
+        m_rigidbody.velocity = Vector3.up * m_jumppower;
     }
 
     /// <summary>
