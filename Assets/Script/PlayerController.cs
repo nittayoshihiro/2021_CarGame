@@ -3,10 +3,13 @@
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] InputStatus m_inputStatus = InputStatus.PC;
-    [SerializeField] float m_power = 30;
-    [SerializeField] float m_jumppower = 2;
+    [SerializeField] float m_power = 20;
+    [SerializeField] float m_rotaionpower = 0.5f;
+    [SerializeField] float m_jumppower = 1;
     Transform m_transform;
     Rigidbody m_rigidbody;
+    /// <summary>地面についているか</summary>
+    bool m_ground = true;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +25,7 @@ public class PlayerController : MonoBehaviour
         switch (m_inputStatus)
         {
             case InputStatus.PC:
-                if (Input.GetKey(KeyCode.W))
+                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Mouse0))
                 {
                     GasPedal();
                 }
@@ -30,7 +33,7 @@ public class PlayerController : MonoBehaviour
                 {
                     RightRotaion();
                 }
-                if (Input.GetKey(KeyCode.S))
+                if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Mouse1))
                 {
                     BackPedal();
                 }
@@ -52,31 +55,59 @@ public class PlayerController : MonoBehaviour
     /// <summary>アクセル（前進）</summary>
     void GasPedal()
     {
-        m_rigidbody.velocity += m_transform.TransformDirection(Vector3.forward * m_power) * Time.fixedDeltaTime;
+        m_rigidbody.velocity += m_transform.TransformDirection(Vector3.forward * m_power) * Time.fixedDeltaTime / m_rigidbody.mass;
     }
 
     /// <summary>右回転</summary>
     void RightRotaion()
     {
-        m_transform.Rotate(Vector3.down);
+        if (m_rigidbody.velocity != Vector3.zero)
+        {
+            m_transform.Rotate(Vector3.down * m_rotaionpower);
+        }
     }
 
     /// <summary>左回転</summary>
     void LeftRotaion()
     {
-        m_transform.Rotate(Vector3.up);
+        if (m_rigidbody.velocity != Vector3.zero)
+        {
+            m_transform.Rotate(Vector3.up * m_rotaionpower);
+        }
     }
 
     /// <summary>バック（後進）</summary>
     void BackPedal()
     {
-        m_rigidbody.velocity += m_transform.TransformDirection(Vector3.back * m_power) * Time.fixedDeltaTime;
+        //前進のパワーの1.5倍
+        m_rigidbody.velocity += m_transform.TransformDirection(Vector3.back * m_power) * Time.fixedDeltaTime / m_rigidbody.mass;
     }
 
     /// <summary>ジャンプ</summary>
     void Jump()
     {
-        m_rigidbody.velocity = Vector3.up * m_jumppower;
+        if (m_ground)
+        {
+            m_rigidbody.velocity = Vector3.up * m_jumppower;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        //地面触れた時
+        if (collision.gameObject.tag == ("Map"))
+        {
+            m_ground = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        //地面を離れた時
+        if (collision.gameObject.tag == ("Map"))
+        {
+            m_ground = false;
+        }
     }
 
     /// <summary>

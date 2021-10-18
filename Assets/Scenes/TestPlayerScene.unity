@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 174988453}
   m_Layer: 0
   m_Name: Cube(Player)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,8 +155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_inputStatus: 0
-  m_power: 30
-  m_jumppower: 2
+  m_power: 15
+  m_rotaionpower: 0.5
+  m_jumppower: 1
 --- !u!54 &174988454
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -447,7 +448,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: PlayerCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -531,8 +532,8 @@ GameObject:
   - component: {fileID: 1902574892}
   - component: {fileID: 1902574891}
   m_Layer: 0
-  m_Name: Plane
-  m_TagString: Untagged
+  m_Name: Plane(map)
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
