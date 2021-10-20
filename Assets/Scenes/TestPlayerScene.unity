@@ -1157,6 +1157,7 @@ GameObject:
   - component: {fileID: 1091679345}
   - component: {fileID: 1091679344}
   - component: {fileID: 1091679343}
+  - component: {fileID: 1091679347}
   m_Layer: 5
   m_Name: SmartPhoneControllerCanvas
   m_TagString: Untagged
@@ -1248,6 +1249,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1091679347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091679342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93a62c57f95b4039bcf8261b72e725c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_A_button: {fileID: 540021220}
+  m_B_button: {fileID: 1052092429}
+  m_Right_button: {fileID: 2017425852}
+  m_Left_button: {fileID: 861732773}
+  m_Jump_button: {fileID: 840416820}
 --- !u!1 &1902574890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1468,6 +1486,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1545070906053929970, guid: 8f2932c682ecd4c19a173f2b9486e929,
+        type: 3}
+      propertyPath: m_inputStatus
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1545070906053929971, guid: 8f2932c682ecd4c19a173f2b9486e929,
         type: 3}
       propertyPath: m_Name

@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float m_jumppower = 1;
     Transform m_transform;
     Rigidbody m_rigidbody;
+    SmartPhonePanelController m_smartPhonePanelController;
+
     /// <summary>地面についているか</summary>
     bool m_ground = true;
 
@@ -16,6 +18,13 @@ public class PlayerController : MonoBehaviour
     {
         m_transform = this.GetComponent<Transform>();
         m_rigidbody = this.GetComponent<Rigidbody>();
+        switch (m_inputStatus)
+        {
+            case InputStatus.SmartPhone:
+                m_smartPhonePanelController = FindObjectOfType<SmartPhonePanelController>();
+                m_smartPhonePanelController.EventTriggerAddListeners(GasPedal,BackPedal,RightRotaion,LeftRotaion,Jump);
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -47,7 +56,6 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             case InputStatus.SmartPhone:
-
                 break;
         }
     }
@@ -55,6 +63,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>アクセル（前進）</summary>
     void GasPedal()
     {
+        Debug.Log("Gas Pedal");
         m_rigidbody.velocity += m_transform.TransformDirection(Vector3.forward * m_power) * Time.fixedDeltaTime / m_rigidbody.mass;
     }
 
