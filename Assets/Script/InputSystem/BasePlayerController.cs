@@ -21,4 +21,9 @@ public class BasePlayerController : MonoBehaviour
     public bool GetLeftRotation() => m_leftRotaion;
     public bool GetBackPedal() => m_BackPedal;
     public bool GetJump() => m_Jump;
+
+    public virtual void PlayerUpdate()
+    {
+        
+    }
 }

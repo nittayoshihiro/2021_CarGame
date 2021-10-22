@@ -2,13 +2,13 @@
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] InputStatus m_inputStatus = InputStatus.PC;
     [SerializeField] float m_power = 20;
     [SerializeField] float m_rotaionpower = 0.5f;
     [SerializeField] float m_jumppower = 1;
+    [SerializeField] GameObject m_SmartPhoneCanvas = null;//後に読み取りで動作するようにする
     Transform m_transform;
     Rigidbody m_rigidbody;
-    SmartPhonePanelController m_smartPhonePanelController;
+    BasePlayerController m_BasePlayerController;
 
     /// <summary>地面についているか</summary>
     bool m_ground = true;
@@ -18,52 +18,44 @@ public class PlayerController : MonoBehaviour
     {
         m_transform = this.GetComponent<Transform>();
         m_rigidbody = this.GetComponent<Rigidbody>();
-        switch (m_inputStatus)
-        {
-            case InputStatus.SmartPhone:
-                m_smartPhonePanelController = FindObjectOfType<SmartPhonePanelController>();
-                m_smartPhonePanelController.EventTriggerAddListeners(GasPedal,BackPedal,RightRotaion,LeftRotaion,Jump);
-                break;
-        }
+
+#if UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
+        m_BasePlayerController = new PC_Input();
+#elif UNITY_ANDROID
+        Instantiate(m_SmartPhoneCanvas);
+        m_BasePlayerController = m_SmartPhoneCanvas.GetComponent<SmartPhone_Input>();
+#endif
     }
 
     // Update is called once per frame
     void Update()
     {
-        //入力形式
-        switch (m_inputStatus)
+        m_BasePlayerController.PlayerUpdate();
+        if (m_BasePlayerController.GetGasPedal())
         {
-            case InputStatus.PC:
-                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Mouse0))
-                {
-                    GasPedal();
-                }
-                if (Input.GetKey(KeyCode.A))
-                {
-                    RightRotaion();
-                }
-                if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Mouse1))
-                {
-                    BackPedal();
-                }
-                if (Input.GetKey(KeyCode.D))
-                {
-                    LeftRotaion();
-                }
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    Jump();
-                }
-                break;
-            case InputStatus.SmartPhone:
-                break;
+            GasPedal();
+        }
+        if (m_BasePlayerController.GetRightRotation())
+        {
+            RightRotaion();
+        }
+        if (m_BasePlayerController.GetLeftRotation())
+        {
+            LeftRotaion();
+        }
+        if (m_BasePlayerController.GetBackPedal())
+        {
+            BackPedal();
+        }
+        if (m_BasePlayerController.GetJump())
+        {
+            Jump();
         }
     }
 
     /// <summary>アクセル（前進）</summary>
     void GasPedal()
     {
-        Debug.Log("Gas Pedal");
         m_rigidbody.velocity += m_transform.TransformDirection(Vector3.forward * m_power) * Time.fixedDeltaTime / m_rigidbody.mass;
     }
 
@@ -117,14 +109,5 @@ public class PlayerController : MonoBehaviour
         {
             m_ground = false;
         }
-    }
-
-    /// <summary>
-    /// 入力状態
-    /// </summary>
-    enum InputStatus
-    {
-        PC,
-        SmartPhone
     }
 }

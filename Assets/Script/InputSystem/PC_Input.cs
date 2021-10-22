@@ -6,8 +6,9 @@ using UnityEngine;
 public class PC_Input : BasePlayerController
 {
     // Update is called once per frame
-    void Update()
+    public override void PlayerUpdate()
     {
+        base.PlayerUpdate();
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Mouse0))
         {
             m_gasPedal = true;
@@ -18,11 +19,11 @@ public class PC_Input : BasePlayerController
         }
         if (Input.GetKey(KeyCode.A))
         {
-            m_leftRotaion = true;
+            m_rightRotaion = true;
         }
         else
         {
-            m_leftRotaion = false;
+            m_rightRotaion = false;
         }
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Mouse1))
         {
@@ -34,11 +35,11 @@ public class PC_Input : BasePlayerController
         }
         if (Input.GetKey(KeyCode.D))
         {
-            m_rightRotaion = true;
+            m_leftRotaion = true;
         }
         else
         {
-            m_rightRotaion = false;
+            m_leftRotaion = false;
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
