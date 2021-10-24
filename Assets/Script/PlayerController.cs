@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// プレイヤーコントローラー
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float m_power = 20;
@@ -22,8 +25,7 @@ public class PlayerController : MonoBehaviour
 #if UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
         m_BasePlayerController = new PC_Input();
 #elif UNITY_ANDROID
-        Instantiate(m_SmartPhoneCanvas);
-        m_BasePlayerController = m_SmartPhoneCanvas.GetComponent<SmartPhone_Input>();
+        m_BasePlayerController = Instantiate(m_SmartPhoneCanvas).GetComponent<SmartPhone_Input>();
 #endif
     }
 
