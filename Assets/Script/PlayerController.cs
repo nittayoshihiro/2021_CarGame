@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         m_rigidbody = this.GetComponent<Rigidbody>();
 
 #if UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
-        m_BasePlayerController = new PC_Input();
+        m_BasePlayerController =  this.gameObject.AddComponent<PC_Input>();
 #elif UNITY_ANDROID
         m_BasePlayerController = Instantiate(m_SmartPhoneCanvas).GetComponent<SmartPhone_Input>();
 #endif
@@ -33,23 +33,23 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         m_BasePlayerController.PlayerUpdate();
-        if (m_BasePlayerController.GetGasPedal())
+        if (m_BasePlayerController.GetGasPedal)
         {
             GasPedal();
         }
-        if (m_BasePlayerController.GetRightRotation())
+        if (m_BasePlayerController.GetRightRotation)
         {
             RightRotaion();
         }
-        if (m_BasePlayerController.GetLeftRotation())
+        if (m_BasePlayerController.GetLeftRotation)
         {
             LeftRotaion();
         }
-        if (m_BasePlayerController.GetBackPedal())
+        if (m_BasePlayerController.GetBackPedal)
         {
             BackPedal();
         }
-        if (m_BasePlayerController.GetJump())
+        if (m_BasePlayerController.GetJump)
         {
             Jump();
         }

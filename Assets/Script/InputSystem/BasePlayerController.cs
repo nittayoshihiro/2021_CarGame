@@ -16,14 +16,14 @@ public class BasePlayerController : MonoBehaviour
     /// <summary>ジャンプするか</summary>
     internal bool m_Jump = false;
 
-    public bool GetGasPedal() => m_gasPedal;
-    public bool GetRightRotation() => m_rightRotaion;
-    public bool GetLeftRotation() => m_leftRotaion;
-    public bool GetBackPedal() => m_BackPedal;
-    public bool GetJump() => m_Jump;
+    public bool GetGasPedal => m_gasPedal;
+    public bool GetRightRotation => m_rightRotaion;
+    public bool GetLeftRotation => m_leftRotaion;
+    public bool GetBackPedal => m_BackPedal;
+    public bool GetJump => m_Jump;
 
     public virtual void PlayerUpdate()
     {
-        
+
     }
 }
