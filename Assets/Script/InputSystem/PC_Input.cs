@@ -41,13 +41,5 @@ public class PC_Input : BasePlayerController
         {
             m_leftRotaion = false;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            m_Jump = true;
-        }
-        else
-        {
-            m_Jump = false;
-        }
     }
 }

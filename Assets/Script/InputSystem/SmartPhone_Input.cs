@@ -11,7 +11,6 @@ public class SmartPhone_Input : BasePlayerController, IPointerEnterHandler, IPoi
     [SerializeField] GameObject m_b_gameobject = null;
     [SerializeField] GameObject m_r_gameobject = null;
     [SerializeField] GameObject m_l_gameobject = null;
-    [SerializeField] GameObject m_j_gameobject = null;
 
     // Update is called once per frame
     public override void PlayerUpdate()
@@ -37,10 +36,6 @@ public class SmartPhone_Input : BasePlayerController, IPointerEnterHandler, IPoi
         {
             m_leftRotaion = true;
         }
-        if (eventData.pointerEnter == m_j_gameobject)
-        {
-            m_Jump = true;
-        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -60,10 +55,6 @@ public class SmartPhone_Input : BasePlayerController, IPointerEnterHandler, IPoi
         if (eventData.pointerEnter == m_l_gameobject)
         {
             m_leftRotaion = true;
-        }
-        if (eventData.pointerEnter == m_j_gameobject)
-        {
-            m_Jump = true;
         }
     }
 
@@ -85,10 +76,6 @@ public class SmartPhone_Input : BasePlayerController, IPointerEnterHandler, IPoi
         {
             m_leftRotaion = false;
         }
-        if (eventData.pointerEnter == m_j_gameobject)
-        {
-            m_Jump = false;
-        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -108,10 +95,6 @@ public class SmartPhone_Input : BasePlayerController, IPointerEnterHandler, IPoi
         if (eventData.pointerEnter == m_l_gameobject)
         {
             m_leftRotaion = false;
-        }
-        if (eventData.pointerEnter == m_j_gameobject)
-        {
-            m_Jump = false;
         }
     }
 }
