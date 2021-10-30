@@ -2169,7 +2169,7 @@ PrefabInstance:
     - target: {fileID: 1545070906053929981, guid: 8f2932c682ecd4c19a173f2b9486e929,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -37.09
+      value: 50.8
       objectReference: {fileID: 0}
     - target: {fileID: 1545070906053929981, guid: 8f2932c682ecd4c19a173f2b9486e929,
         type: 3}
@@ -3507,7 +3507,7 @@ GameObject:
   - component: {fileID: 1271717258}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: outside
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
