@@ -215,7 +215,7 @@ Transform:
   m_GameObject: {fileID: 467028075}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: -5}
-  m_LocalScale: {x: 10, y: 1, z: 0.01}
+  m_LocalScale: {x: 10, y: 3, z: 0.01}
   m_Children: []
   m_Father: {fileID: 1902574894}
   m_RootOrder: 1
@@ -400,7 +400,7 @@ Transform:
   m_GameObject: {fileID: 714186747}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 5}
-  m_LocalScale: {x: 10, y: 1, z: 0.01}
+  m_LocalScale: {x: 10, y: 3, z: 0.01}
   m_Children: []
   m_Father: {fileID: 1902574894}
   m_RootOrder: 0
@@ -493,7 +493,7 @@ Transform:
   m_GameObject: {fileID: 1052760645}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.01, y: 1, z: 10}
+  m_LocalScale: {x: 0.01, y: 3, z: 10}
   m_Children: []
   m_Father: {fileID: 1902574894}
   m_RootOrder: 2
@@ -586,7 +586,7 @@ Transform:
   m_GameObject: {fileID: 1892437725}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.01, y: 1, z: 10}
+  m_LocalScale: {x: 0.01, y: 3, z: 10}
   m_Children: []
   m_Father: {fileID: 1902574894}
   m_RootOrder: 3
@@ -702,7 +702,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0667b8ccb0f814820a35686869028ab6, type: 2}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -850,7 +850,12 @@ PrefabInstance:
     - target: {fileID: 6902488628038314475, guid: a519c4a86b5fa4d9bb8f66739e943a02,
         type: 3}
       propertyPath: m_power
-      value: 30
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902488628038314475, guid: a519c4a86b5fa4d9bb8f66739e943a02,
+        type: 3}
+      propertyPath: m_rotaionpower
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6902488628038314476, guid: a519c4a86b5fa4d9bb8f66739e943a02,
         type: 3}
