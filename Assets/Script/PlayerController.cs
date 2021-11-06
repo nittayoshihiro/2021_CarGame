@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float m_power = 20;
     [SerializeField] float m_rotaionpower = 0.5f;
     [SerializeField] GameObject m_SmartPhoneCanvas = null;//後に読み取りで動作するようにする
-    Coroutine m_coroutine;
     Transform m_transform;
     Rigidbody m_rigidbody;
     BasePlayerController m_BasePlayerController;
@@ -22,7 +21,7 @@ public class PlayerController : MonoBehaviour
         Application.targetFrameRate = 30;
 
 #if UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
-        m_BasePlayerController =  this.gameObject.AddComponent<PC_Input>();
+        m_BasePlayerController = this.gameObject.AddComponent<PC_Input>();
 #elif UNITY_ANDROID
         m_BasePlayerController = Instantiate(m_SmartPhoneCanvas).GetComponent<SmartPhone_Input>();
 #endif
@@ -32,6 +31,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         m_BasePlayerController.PlayerUpdate();
+
+        //m_BasePlayerController.GetGasPedal ? GasPedal();
+
         if (m_BasePlayerController.GetGasPedal)
         {
             GasPedal();
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         if (m_rigidbody.velocity != Vector3.zero)
         {
-            m_transform.Rotate(Vector3.up * m_rotaionpower);
+            m_rigidbody.AddTorque(Vector3.up * m_rotaionpower);
         }
     }
 
@@ -70,7 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         if (m_rigidbody.velocity != Vector3.zero)
         {
-            m_transform.Rotate(Vector3.down * m_rotaionpower);
+            m_rigidbody.AddTorque(Vector3.down * m_rotaionpower);
         }
     }
 

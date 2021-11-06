@@ -19,11 +19,11 @@ public class PC_Input : BasePlayerController
         }
         if (Input.GetKey(KeyCode.A))
         {
-            m_rightRotaion = true;
+            m_leftRotaion = true;
         }
         else
         {
-            m_rightRotaion = false;
+            m_leftRotaion = false;
         }
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Mouse1))
         {
@@ -35,11 +35,12 @@ public class PC_Input : BasePlayerController
         }
         if (Input.GetKey(KeyCode.D))
         {
-            m_leftRotaion = true;
+            m_rightRotaion = true;
         }
         else
         {
-            m_leftRotaion = false;
+            m_rightRotaion = false;
         }
+
     }
 }
