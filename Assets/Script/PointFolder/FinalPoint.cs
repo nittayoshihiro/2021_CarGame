@@ -25,6 +25,7 @@ public class FinalPoint : MonoBehaviour
             {
                 Orbit_M.num = CheckPointNumber;
                 Orbit_M.WeekNum += 1;
+                Orbit_M.lapsText.text = Orbit_M.WeekNum.ToString()+"/3";
                 Orbit_M.allCheckPoint = false;
             }
         }
