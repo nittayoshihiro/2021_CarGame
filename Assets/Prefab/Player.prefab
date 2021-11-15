@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6902488628038314475}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6, y: 1, z: 5}
+  m_Size: {x: 2, y: 1, z: 5}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &6902488628038314472
 Rigidbody:
@@ -78,9 +78,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_power: 20
   m_rotaionpower: 0.5
-  m_jumppower: 1
   m_SmartPhoneCanvas: {fileID: 6249182557791873449, guid: 7d2f707b2387044ae99e2385f98a241f,
     type: 3}
+  m_transform: {fileID: 0}
+  m_rigidbody: {fileID: 0}
 --- !u!1 &6902488628182333444
 GameObject:
   m_ObjectHideFlags: 0

@@ -841,6 +841,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6902488628038314472, guid: a519c4a86b5fa4d9bb8f66739e943a02,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902488628038314474, guid: a519c4a86b5fa4d9bb8f66739e943a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6902488628038314475, guid: a519c4a86b5fa4d9bb8f66739e943a02,
         type: 3}
       propertyPath: m_SmartPhoneCanvas
@@ -855,11 +865,16 @@ PrefabInstance:
     - target: {fileID: 6902488628038314475, guid: a519c4a86b5fa4d9bb8f66739e943a02,
         type: 3}
       propertyPath: m_rotaionpower
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6902488628038314476, guid: a519c4a86b5fa4d9bb8f66739e943a02,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902488628038314476, guid: a519c4a86b5fa4d9bb8f66739e943a02,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6902488628038314477, guid: a519c4a86b5fa4d9bb8f66739e943a02,
