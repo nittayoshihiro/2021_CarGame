@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -6,14 +7,13 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float m_power = 20;
-    [SerializeField] float m_rotaionpower = 0.5f;
+    [SerializeField] public float m_power = 20;
+    [SerializeField] public float m_rotaionpower = 0.5f;
     [SerializeField] GameObject m_SmartPhoneCanvas = null;//後に読み取りで動作するようにする
-    Transform m_transform;
-    Rigidbody m_rigidbody;
-    BasePlayerController m_BasePlayerController;
+    public Transform m_transform;
+    public Rigidbody m_rigidbody;
+    List<PlayerBaseState> m_playerBaseStates = new List<PlayerBaseState>();
 
-    // Start is called before the first frame update
     void Start()
     {
         m_transform = this.GetComponent<Transform>();
@@ -23,62 +23,25 @@ public class PlayerController : MonoBehaviour
 #if UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
         m_BasePlayerController = this.gameObject.AddComponent<PC_Input>();
 #elif UNITY_ANDROID
-        m_BasePlayerController = Instantiate(m_SmartPhoneCanvas).GetComponent<SmartPhone_Input>();
+       // m_BasePlayerController = Instantiate(m_SmartPhoneCanvas).GetComponent<SmartPhone_Input>();
 #endif
     }
 
-    // Update is called once per frame
     void Update()
     {
-        m_BasePlayerController.PlayerUpdate();
-
-        //m_BasePlayerController.GetGasPedal ? GasPedal();
-
-        if (m_BasePlayerController.GetGasPedal)
+        foreach (PlayerBaseState item in m_playerBaseStates)
         {
-            GasPedal();
-        }
-        if (m_BasePlayerController.GetRightRotation)
-        {
-            RightRotaion();
-        }
-        if (m_BasePlayerController.GetLeftRotation)
-        {
-            LeftRotaion();
-        }
-        if (m_BasePlayerController.GetBackPedal)
-        {
-            BackPedal();
+            item.OnUpdate(this);
         }
     }
 
-    /// <summary>アクセル（前進）</summary>
-    void GasPedal()
+    public void PlayerStateAdd(PlayerBaseState playerBaseState)
     {
-        m_rigidbody.velocity += m_transform.TransformDirection(Vector3.forward * m_power) * Time.fixedDeltaTime / m_rigidbody.mass;
+        m_playerBaseStates.Add(playerBaseState);
     }
 
-    /// <summary>右回転</summary>
-    void RightRotaion()
+    public void PlayerStateRemove(PlayerBaseState playerBaseState)
     {
-        if (m_rigidbody.velocity != Vector3.zero)
-        {
-            m_rigidbody.AddTorque(Vector3.up * m_rotaionpower);
-        }
-    }
-
-    /// <summary>左回転</summary>
-    void LeftRotaion()
-    {
-        if (m_rigidbody.velocity != Vector3.zero)
-        {
-            m_rigidbody.AddTorque(Vector3.down * m_rotaionpower);
-        }
-    }
-
-    /// <summary>バック（後進）</summary>
-    void BackPedal()
-    {
-        m_rigidbody.velocity += m_transform.TransformDirection(Vector3.back * m_power) * Time.fixedDeltaTime / m_rigidbody.mass;
+        m_playerBaseStates.Remove(playerBaseState);
     }
 }
