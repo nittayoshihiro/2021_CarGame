@@ -20,10 +20,8 @@ public class PlayerController : MonoBehaviour
         m_rigidbody = this.GetComponent<Rigidbody>();
         Application.targetFrameRate = 30;
 
-#if UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN
-        m_BasePlayerController = this.gameObject.AddComponent<PC_Input>();
-#elif UNITY_ANDROID
-       // m_BasePlayerController = Instantiate(m_SmartPhoneCanvas).GetComponent<SmartPhone_Input>();
+#if UNITY_ANDROID
+        Instantiate(m_SmartPhoneCanvas);
 #endif
     }
 

@@ -17,6 +17,10 @@ public class SmartPhoneController : MonoBehaviour
                 break;
             case 1://一本タッチされている時
                 TuchMode(Input.touches[0], m_touchPointerOne);
+                if (m_touchPointerTwo.activeSelf)
+                {
+                    m_touchPointerTwo.SetActive(false);
+                }
                 break;
             default://二本以上タッチされた時
                 TuchMode(Input.touches[0], m_touchPointerOne);
