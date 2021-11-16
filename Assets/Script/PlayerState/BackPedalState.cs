@@ -16,7 +16,7 @@ public class BackPedalState : MonoBehaviour, PlayerBaseState
 
     public void OnUpdate(PlayerController playerController)
     {
-        playerController.m_rigidbody.velocity += playerController.m_transform.TransformDirection(Vector3.back * playerController.m_power) * Time.fixedDeltaTime / playerController.m_rigidbody.mass;
+        playerController.m_rigidbody.velocity += playerController.transform.TransformDirection(Vector3.back * playerController.m_power) * Time.fixedDeltaTime / playerController.m_rigidbody.mass;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

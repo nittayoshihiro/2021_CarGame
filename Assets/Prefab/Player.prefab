@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_power: 20
-  m_rotaionpower: 0.5
+  m_rotaionpower: 20
   m_SmartPhoneCanvas: {fileID: 6249182557791873449, guid: 7d2f707b2387044ae99e2385f98a241f,
     type: 3}
   m_transform: {fileID: 0}

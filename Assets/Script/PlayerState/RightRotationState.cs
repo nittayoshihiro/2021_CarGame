@@ -18,7 +18,7 @@ public class RightRotationState : MonoBehaviour, PlayerBaseState
     {
         if (playerController.m_rigidbody.velocity != Vector3.zero)
         {
-            playerController.m_rigidbody.AddTorque(Vector3.up * playerController.m_rotaionpower);
+            playerController.transform.Rotate(Vector3.up * playerController.m_rotaionpower);
         }
     }
 

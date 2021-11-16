@@ -17,7 +17,7 @@ public class GasPedalState : MonoBehaviour, PlayerBaseState
     public void OnUpdate(PlayerController playerController)
     {
         playerController.m_rigidbody.velocity +=
-            playerController.m_transform.TransformDirection(Vector3.forward * playerController.m_power)
+            playerController.transform.TransformDirection(Vector3.forward * playerController.m_power)
             * Time.fixedDeltaTime / playerController.m_rigidbody.mass;
     }
 
