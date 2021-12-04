@@ -7,20 +7,22 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] public float m_power = 20;
-    [SerializeField] public float m_rotaionpower = 0.5f;
-    [SerializeField] GameObject m_SmartPhoneCanvas = null;//後に読み取りで動作するようにする
+    [SerializeField] public float m_accel = 2f;
+    [SerializeField] public float m_maxspeed = 20f; 
+    [SerializeField] public float m_rotaionaccel = 2f;
+    [SerializeField] public float m_maxrotaionspeed = 20f;
+    [SerializeField] GameObject m_smartphonecanvas = null;//後に読み取りで動作するようにする
     public Rigidbody m_rigidbody;
     List<PlayerBaseState> m_playerBaseStates = new List<PlayerBaseState>();
+    public float m_speed = 0f;
+    public float m_rotation = 0f;
+
 
     void Start()
     {
         m_rigidbody = this.GetComponent<Rigidbody>();
         Application.targetFrameRate = 30;
-
-#if UNITY_ANDROID
-        Instantiate(m_SmartPhoneCanvas);
-#endif
+        Instantiate(m_smartphonecanvas);
     }
 
     void Update()

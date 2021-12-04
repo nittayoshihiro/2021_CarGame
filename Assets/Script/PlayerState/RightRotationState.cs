@@ -16,10 +16,9 @@ public class RightRotationState : MonoBehaviour, PlayerBaseState
 
     public void OnUpdate(PlayerController playerController)
     {
-        if (playerController.m_rigidbody.velocity != Vector3.zero)
-        {
-            playerController.transform.Rotate(Vector3.up * playerController.m_rotaionpower);
-        }
+        playerController.m_rotation += playerController.m_rotaionaccel * Time.deltaTime;
+        playerController.m_rotation = Mathf.Clamp(playerController.m_rotation, 0, playerController.m_maxrotaionspeed);
+        playerController.transform.Rotate(Vector3.up * playerController.m_rotation);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,6 +30,7 @@ public class RightRotationState : MonoBehaviour, PlayerBaseState
     private void OnTriggerExit2D(Collider2D collision)
     {
         m_image.color = Color.white;
+        m_playerController.m_rotation = 0;
         m_playerController.PlayerStateRemove(this);
     }
 }

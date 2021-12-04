@@ -16,7 +16,9 @@ public class BackPedalState : MonoBehaviour, PlayerBaseState
 
     public void OnUpdate(PlayerController playerController)
     {
-        playerController.m_rigidbody.velocity += playerController.transform.TransformDirection(Vector3.back * playerController.m_power) * Time.fixedDeltaTime / playerController.m_rigidbody.mass;
+        playerController.m_speed -= playerController.m_accel * Time.deltaTime;
+        playerController.m_speed = Mathf.Clamp(playerController.m_speed, -playerController.m_maxspeed, 0f);
+        playerController.m_rigidbody.velocity = playerController.transform.forward * playerController.m_speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,6 +30,7 @@ public class BackPedalState : MonoBehaviour, PlayerBaseState
     private void OnTriggerExit2D(Collider2D collision)
     {
         m_image.color = Color.white;
+        m_playerController.m_speed = 0;
         m_playerController.PlayerStateRemove(this);
     }
 }
