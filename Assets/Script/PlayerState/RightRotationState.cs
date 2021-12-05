@@ -6,11 +6,9 @@ using UnityEngine.UI;
 public class RightRotationState : MonoBehaviour, PlayerBaseState
 {
     PlayerController m_playerController = null;
-    Image m_image = null;
 
     public void Start()
     {
-        m_image = GetComponent<Image>();
         m_playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
@@ -21,15 +19,13 @@ public class RightRotationState : MonoBehaviour, PlayerBaseState
         playerController.transform.Rotate(Vector3.up * playerController.m_rotation);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void RightAdd()
     {
-        m_image.color = Color.black;
         m_playerController.PlayerStateAdd(this);
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void RightRemove()
     {
-        m_image.color = Color.white;
         m_playerController.m_rotation = 0;
         m_playerController.PlayerStateRemove(this);
     }
