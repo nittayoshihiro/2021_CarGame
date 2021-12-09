@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RightRotationState : MonoBehaviour, PlayerBaseState
+public class RightRotationState : MonoBehaviour, IPlayerBaseState
 {
     PlayerController m_playerController = null;
 

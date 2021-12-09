@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BackPedalState : MonoBehaviour, PlayerBaseState
+public class BackPedalState : MonoBehaviour, IPlayerBaseState
 {
     PlayerController m_playerController = null;
 
@@ -14,9 +14,15 @@ public class BackPedalState : MonoBehaviour, PlayerBaseState
 
     public void OnUpdate(PlayerController playerController)
     {
-        playerController.m_speed -= playerController.m_accel * Time.deltaTime;
-        playerController.m_speed = Mathf.Clamp(playerController.m_speed, -playerController.m_maxspeed, 0f);
-        playerController.m_rigidbody.velocity = playerController.transform.forward * playerController.m_speed;
+        if (0 < playerController.m_speed)
+        {
+            playerController.m_speed -= playerController.m_accel * 3 * Time.deltaTime;
+        }
+        else
+        {
+            playerController.m_speed -= playerController.m_accel * Time.deltaTime;
+        }
+        playerController.m_speed = Mathf.Clamp(playerController.m_speed, -playerController.m_maxspeed / 2, playerController.m_maxrotaionspeed);
     }
 
     public void BackAdd()
@@ -26,7 +32,6 @@ public class BackPedalState : MonoBehaviour, PlayerBaseState
 
     public void BackRemove()
     {
-        m_playerController.m_speed = 0;
         m_playerController.PlayerStateRemove(this);
     }
 }
