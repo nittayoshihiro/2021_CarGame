@@ -6,27 +6,31 @@ using UnityEngine.UI;
 public class LeftRotationState : MonoBehaviour, PlayerBaseState
 {
     PlayerController m_playerController = null;
+    Image m_image = null;
 
     public void Start()
     {
+        m_image = GetComponent<Image>();
         m_playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     public void OnUpdate(PlayerController playerController)
     {
-        playerController.m_rotation += playerController.m_rotaionaccel * Time.deltaTime;
-        playerController.m_rotation = Mathf.Clamp(playerController.m_rotation, 0, playerController.m_maxrotaionspeed);
-        playerController.transform.Rotate(Vector3.down * playerController.m_rotation);
+        if (playerController.m_rigidbody.velocity != Vector3.zero)
+        {
+            playerController.m_rigidbody.AddTorque(Vector3.down * playerController.m_rotaionpower);
+        }
     }
 
-    public void LeftAdd()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        m_image.color = Color.black;
         m_playerController.PlayerStateAdd(this);
     }
 
-    public void LeftRemove()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        m_playerController.m_rotation = 0;
+        m_image.color = Color.white;
         m_playerController.PlayerStateRemove(this);
     }
 }
