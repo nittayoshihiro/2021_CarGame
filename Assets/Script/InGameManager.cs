@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameUI : MonoBehaviour
+public class InGameManager : MonoBehaviour
 {
+    //チェックゲート
+    [SerializeField] GameObject[] m_checkgate;
+    GameObject m_player = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +18,15 @@ public class GameUI : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void CheckCounter()
+    {
+        
+    }
+
+    public void GameTime()
+    {
+
     }
 }
