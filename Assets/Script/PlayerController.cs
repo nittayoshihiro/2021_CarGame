@@ -13,8 +13,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float m_rotaionaccel = 2f;
     [SerializeField] public float m_maxrotaionspeed = 20f;
     [SerializeField] float m_defoltFOV = 90;
-    [SerializeField] GameObject m_smartphonecanvas = null;//後に読み取りで動作するようにする
     [SerializeField] Camera m_playerCamera = null;
+    [SerializeField] GameObject m_speedEfect = null;
+    AudioController m_audioController = null;
     public Rigidbody m_rigidbody;
     List<IPlayerBaseState> m_playerBaseStates = new List<IPlayerBaseState>();
     /// <summary>プレイヤーのスピード</summary>
@@ -22,16 +23,27 @@ public class PlayerController : MonoBehaviour
     /// <summary>プレイヤーの回転</summary>
     public float m_rotation = 0f;
     Coroutine m_coroutine = null;
+    //ゲートのカウントを保持します。
+    public int gateCount = 0;
 
     void Start()
     {
+        m_audioController = FindObjectOfType<AudioController>();
         m_rigidbody = this.GetComponent<Rigidbody>();
         Application.targetFrameRate = 30;
-        Instantiate(m_smartphonecanvas);
     }
 
     void Update()
     {
+        if (25<m_speed)
+        {
+            m_speedEfect.SetActive(true);
+        }
+        else
+        {
+            m_speedEfect.SetActive(false);
+        }
+
         foreach (IPlayerBaseState item in m_playerBaseStates)
         {
             item.OnUpdate(this);
@@ -39,6 +51,7 @@ public class PlayerController : MonoBehaviour
         m_playerCamera.fieldOfView = m_defoltFOV + (m_speed / 2f);
         m_rigidbody.velocity = transform.forward * m_speed;
         m_speed = Mathf.Lerp(m_speed, 0f, Time.deltaTime/5);
+        m_audioController.EngenVolume(m_speed/10);
     }
 
     /// <summary>アイテム効果スピード関数</summary>
@@ -72,4 +85,9 @@ public class PlayerController : MonoBehaviour
         m_playerBaseStates.Remove(playerBaseState);
     }
 
+    public void PlayerReset()
+    {
+        m_speed = 0f;
+        m_playerBaseStates.Clear();
+    }
 }
