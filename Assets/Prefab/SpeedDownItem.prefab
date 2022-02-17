@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5346843297259864620}
   - component: {fileID: 1658203460211822036}
   - component: {fileID: 2825288483504295168}
-  - component: {fileID: 4068640985789125102}
+  - component: {fileID: 1973781331793616028}
   m_Layer: 0
   m_Name: SpeedDownItem
   m_TagString: Untagged
@@ -96,7 +96,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4068640985789125102
+--- !u!114 &1973781331793616028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,10 +105,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7675096182023079699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c05c3879cdbd5486d8812dd336111e29, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bd506c1c79384ad8be2fbfb375a3bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_boostspeed: 0
+  m_downspeed: 0.8
   m_effecttime: 1
   m_itemSound: {fileID: 8300000, guid: 2e69432ad31c849a7acfabdcf655e888, type: 3}
 --- !u!1001 &7578616788005090231
@@ -179,6 +179,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 65989614170564386, guid: 2b3cabd4b48b10844aaf7f6b97260292,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 205939973052796156, guid: 2b3cabd4b48b10844aaf7f6b97260292,
         type: 3}
       propertyPath: m_Enabled
       value: 0

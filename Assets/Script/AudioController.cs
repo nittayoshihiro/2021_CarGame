@@ -11,6 +11,8 @@ public class AudioController : MonoBehaviour
     [SerializeField] AudioClip m_titleBGM = null;
     [SerializeField] AudioClip m_ingameBGM = null;
     [SerializeField] AudioClip m_resultBGM = null;
+    [SerializeField] AudioClip m_clickSound = null;
+    [SerializeField] AudioClip m_countSound = null;
 
     private void Start()
     {
@@ -25,6 +27,11 @@ public class AudioController : MonoBehaviour
         audioSource.Play();
     }
 
+    public void StartCount()
+    {
+        m_sfx.PlayOneShot(m_countSound);
+   }
+
     public void PlaySFX(AudioClip audioClip)
     {
         m_sfx.clip = audioClip;
@@ -38,11 +45,13 @@ public class AudioController : MonoBehaviour
 
     public void TiteBGM()
     {
+        m_bgm.PlayOneShot(m_clickSound);
         ChangeAudioClip(m_titleBGM, m_bgm);
     }
 
     public void GameBGM()
     {
+        m_bgm.PlayOneShot(m_clickSound);
         ChangeAudioClip(m_ingameBGM, m_bgm);
     }
 

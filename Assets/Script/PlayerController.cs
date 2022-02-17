@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (25<m_speed)
+        if (40 < m_speed)
         {
             m_speedEfect.SetActive(true);
         }
@@ -50,8 +50,9 @@ public class PlayerController : MonoBehaviour
         }
         m_playerCamera.fieldOfView = m_defoltFOV + (m_speed / 2f);
         m_rigidbody.velocity = transform.forward * m_speed;
-        m_speed = Mathf.Lerp(m_speed, 0f, Time.deltaTime/5);
-        m_audioController.EngenVolume(m_speed/10);
+        m_speed *= 0.995f;
+
+        m_audioController.EngenVolume(m_speed / 50);
     }
 
     /// <summary>アイテム効果スピード関数</summary>
